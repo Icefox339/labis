@@ -10,7 +10,7 @@
 #include <time.h> 
 
 #include "fonts.h"
-//лабики
+//Г«Г ГЎГЁГЄГЁ
 #include "stack.h"
 #include "vector.h"
 
@@ -58,7 +58,7 @@ int name_count = 0;
 int cells_counter = 0;
 int location = 0; // 0 - main menu, 1 - start, 2 - usage, 3 - about, 4 - quit, 5 - labirint, 6 - load file, 7 - draw, 8 - save, 9 - saved_success
 int labi = 0; // 0 - off,  1 - binary_tree, 2 - hunt_and_kill, 3 - wylson
-short click_delay = 1; // дилей клика для того, чтобы не регало сразу несколько кнопок на всех локациях
+short click_delay = 1; // Г¤ГЁГ«ГҐГ© ГЄГ«ГЁГЄГ  Г¤Г«Гї ГІГ®ГЈГ®, Г·ГІГ®ГЎГ» Г­ГҐ Г°ГҐГЈГ Г«Г® Г±Г°Г Г§Гі Г­ГҐГ±ГЄГ®Г«ГјГЄГ® ГЄГ­Г®ГЇГ®ГЄ Г­Г  ГўГ±ГҐГµ Г«Г®ГЄГ Г¶ГЁГїГµ
 int labi_width = LABI_START_WIDTH;
 int labi_height = LABI_START_HEIGHT;
 char file_name[MAX_FILE_NAME_LEN];
@@ -67,7 +67,7 @@ int speed = LABI_START_SPEED;
 int labi_created = 0;
 char file_buffer_name[1] ="\n";
 int labi_force_reload = 0;
-// лабики
+// Г«Г ГЎГЁГЄГЁ
 enum CellState {
 	Close,
 	Open
@@ -91,7 +91,7 @@ struct Cell {
 Cell** main_maze;
 
 
-//бибабики
+//ГЎГЁГЎГ ГЎГЁГЄГЁ
 typedef struct {
 	char name[20];
 	float vert[8];
@@ -301,15 +301,15 @@ void print_string(float x, float y, char* text, float r, float g, float b)
 void TButton_Show(TButton btn)
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
-	if (btn.hover) glColor3f(1.0f, 0.5f, 0.0f); // цвет кнопочек 
+	if (btn.hover) glColor3f(1.0f, 0.5f, 0.0f); // Г¶ГўГҐГІ ГЄГ­Г®ГЇГ®Г·ГҐГЄ 
 	else glColor3f(0.1f, 0.1f, 0.5f);
 	glVertexPointer(2, GL_FLOAT, 0, btn.vert);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	glDisableClientState(GL_VERTEX_ARRAY);
 
 	glPushMatrix();
-	glTranslatef(btn.vert[0], btn.vert[1], 0); // передвигаем буквы к кнопке
-	glScalef(5, 5, 5); // увеличиваем текст
+	glTranslatef(btn.vert[0], btn.vert[1], 0); // ГЇГҐГ°ГҐГ¤ГўГЁГЈГ ГҐГ¬ ГЎГіГЄГўГ» ГЄ ГЄГ­Г®ГЇГЄГҐ
+	glScalef(5, 5, 5); // ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ ГІГҐГЄГ±ГІ
 	print_string(3, 3, btn.name, 1, 1, 1);
 	glPopMatrix();
 }
@@ -322,8 +322,8 @@ void TBoard_Show(TBoard brd)
 	glDisableClientState(GL_VERTEX_ARRAY);
 	
 	glPushMatrix();
-	glTranslatef(brd.vert[0], brd.vert[1], 0); // передвигаем буквы к доске
-	glScalef(3, 3, 3); // увеличиваем текст
+	glTranslatef(brd.vert[0], brd.vert[1], 0); // ГЇГҐГ°ГҐГ¤ГўГЁГЈГ ГҐГ¬ ГЎГіГЄГўГ» ГЄ Г¤Г®Г±ГЄГҐ
+	glScalef(3, 3, 3); // ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ ГІГҐГЄГ±ГІ
 	print_string(3, 3, brd.name, 1, 1, 1);
 	glPopMatrix();
 }
@@ -348,8 +348,8 @@ void Percentage_View(TBoard brd, float percentage)
 	glPushMatrix();
 	glLoadIdentity();
 	glOrtho(0, width, height, 0, -1, 1);
-	glTranslatef(brd.vert[0], brd.vert[1], 0); // передвигаем буквы к доске
-	glScalef(3, 3, 3); // увеличиваем текст
+	glTranslatef(brd.vert[0], brd.vert[1], 0); // ГЇГҐГ°ГҐГ¤ГўГЁГЈГ ГҐГ¬ ГЎГіГЄГўГ» ГЄ Г¤Г®Г±ГЄГҐ
+	glScalef(3, 3, 3); // ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ ГІГҐГЄГ±ГІ
 	glBegin(GL_TRIANGLE_STRIP);
 	glColor3f(0, 0, 0); glVertex2f(0, 15);
 	glColor3f(0, 0, 0); glVertex2f(20, 15); glVertex2f(0, 0);
@@ -367,7 +367,7 @@ void ShowCell(char index)
 	glColor3f(0.5, 0.5, 0.5); glVertex2f(1, 1); glVertex2f(0, 0);
 	glColor3f(0.5, 0.5, 0.5); glVertex2f(1, 0);
 	glEnd();*/
-	if (index == '0') { // пустая клетка
+	if (index == '0') { // ГЇГіГ±ГІГ Гї ГЄГ«ГҐГІГЄГ 
 		glBegin(GL_LINES);
 		glColor3f(0, 0, 0); glVertex2f(1, 0);
 		glColor3f(0, 0, 0); glVertex2f(1, 1);
@@ -711,7 +711,7 @@ void addBranch(struct Stack* path, Cell** maze, HDC hDC)
 	Cell next;
 	while (!isEmptyStack(path)) {
 		next = *(Cell*)pop(path);
-		if (current.x == next.x) {//горизонтально
+		if (current.x == next.x) {//ГЈГ®Г°ГЁГ§Г®Г­ГІГ Г«ГјГ­Г®
 
 			if (next.y > current.y) {
 				maze[next.y][next.x].Top = Open;
@@ -723,11 +723,11 @@ void addBranch(struct Stack* path, Cell** maze, HDC hDC)
 			}
 		}
 		else {
-			if (next.x > current.x) {//Тут вроде очевидно
+			if (next.x > current.x) {//Г’ГіГІ ГўГ°Г®Г¤ГҐ Г®Г·ГҐГўГЁГ¤Г­Г®
 				maze[current.y][current.x].Right = Open;
 				maze[next.y][next.x].Left = Open;
 			}
-			else {//Тут вроде очевидно
+			else {//Г’ГіГІ ГўГ°Г®Г¤ГҐ Г®Г·ГҐГўГЁГ¤Г­Г®
 				maze[current.y][current.x].Left = Open;
 				maze[next.y][next.x].Right = Open;
 			}
@@ -772,7 +772,7 @@ void Show_labi_wylson(HDC hDC)
 	start_time = clock();
 	if (!labi_created) {
 		if (maze != NULL) {
-			for (int y = 0; y < height_work; y++) {//Инициализируем матрицу для лабиринта. На клеточку всего 6 аргументов- 4 грани 2-мерной стенки и координаты клетки лабиринта
+			for (int y = 0; y < height_work; y++) {//Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°ГіГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі Г¤Г«Гї Г«Г ГЎГЁГ°ГЁГ­ГІГ . ГЌГ  ГЄГ«ГҐГІГ®Г·ГЄГі ГўГ±ГҐГЈГ® 6 Г Г°ГЈГіГ¬ГҐГ­ГІГ®Гў- 4 ГЈГ°Г Г­ГЁ 2-Г¬ГҐГ°Г­Г®Г© Г±ГІГҐГ­ГЄГЁ ГЁ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ» ГЄГ«ГҐГІГЄГЁ Г«Г ГЎГЁГ°ГЁГ­ГІГ 
 				for (int x = 0; x < width_work; x++) {
 					maze[y][x].x = x;
 					maze[y][x].y = y;
@@ -808,24 +808,24 @@ void Show_labi_wylson(HDC hDC)
 
 					int dir = 0;
 					Cell nextStep[5] = { 0 };
-					if ((branchStart.x >= 0) && (branchStart.x < width_work - 1)) {//Вправо
+					if ((branchStart.x >= 0) && (branchStart.x < width_work - 1)) {//Г‚ГЇГ°Г ГўГ®
 						nextStep[dir] = maze[branchStart.y][branchStart.x + 1];
 						dir++;
 					}
-					if ((branchStart.y > 0) && (branchStart.y <= height_work - 1)) {//Вверх
+					if ((branchStart.y > 0) && (branchStart.y <= height_work - 1)) {//Г‚ГўГҐГ°Гµ
 						nextStep[dir] = maze[branchStart.y - 1][branchStart.x];
 						dir++;
 					}
 					if ((branchStart.x > 0) && (branchStart.x <= width_work - 1)) {
-						nextStep[dir] = maze[branchStart.y][branchStart.x - 1];//Влево
+						nextStep[dir] = maze[branchStart.y][branchStart.x - 1];//Г‚Г«ГҐГўГ®
 						dir++;
 					}
-					if ((branchStart.y >= 0) && (branchStart.y < height_work - 1)) {//Вниз
+					if ((branchStart.y >= 0) && (branchStart.y < height_work - 1)) {//Г‚Г­ГЁГ§
 						nextStep[dir] = maze[branchStart.y + 1][branchStart.x];
 						dir++;
 					}
 
-					Cell next_step;// Здесь баг с непонятным значением
+					Cell next_step;// Г‡Г¤ГҐГ±Гј ГЎГ ГЈ Г± Г­ГҐГЇГ®Г­ГїГІГ­Г»Г¬ Г§Г­Г Г·ГҐГ­ГЁГҐГ¬
 					next_step = nextStep[rand() % dir];
 					dir = 0;
 
@@ -858,7 +858,7 @@ void Show_labi_wylson(HDC hDC)
 						maze[branchStart.y][branchStart.x].Visited = inCurBranch;
 						break;
 
-					case 1: //Занята, стираем зацикливание
+					case 1: //Г‡Г Г­ГїГІГ , Г±ГІГЁГ°Г ГҐГ¬ Г§Г Г¶ГЁГЄГ«ГЁГўГ Г­ГЁГҐ
 						removeCell = *(Cell*)pop(path);
 						maze[removeCell.y][removeCell.x].Visited = notVisited;
 						while (!isEmptyStack(path) && (removeCell.x != branchStart.x || removeCell.y != branchStart.y)) {
@@ -868,7 +868,7 @@ void Show_labi_wylson(HDC hDC)
 						push(path, &maze[branchStart.y][branchStart.x]);
 
 						break;
-					case 2: {//Готовый проход
+					case 2: {//ГѓГ®ГІГ®ГўГ»Г© ГЇГ°Г®ГµГ®Г¤
 						push(path, &maze[branchStart.y][branchStart.x]);
 						addBranch(path, maze, hDC);
 						
@@ -914,7 +914,7 @@ void Show_labi_hunt_and_kill(HDC hDC)
 		maze[row] = (Cell*)malloc(sizeof(Cell) * width_work + 1);
 	}
 	if (!labi_created) {
-		for (int y = 0; y < height_work; y++) {//Инициализируем матрицу для лабиринта. На клеточку всего 6 аргументов- 4 грани 2-мерной стенки и координаты клетки лабиринта
+		for (int y = 0; y < height_work; y++) {//Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°ГіГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі Г¤Г«Гї Г«Г ГЎГЁГ°ГЁГ­ГІГ . ГЌГ  ГЄГ«ГҐГІГ®Г·ГЄГі ГўГ±ГҐГЈГ® 6 Г Г°ГЈГіГ¬ГҐГ­ГІГ®Гў- 4 ГЈГ°Г Г­ГЁ 2-Г¬ГҐГ°Г­Г®Г© Г±ГІГҐГ­ГЄГЁ ГЁ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ» ГЄГ«ГҐГІГЄГЁ Г«Г ГЎГЁГ°ГЁГ­ГІГ 
 			for (int x = 0; x < width_work; x++) {
 				maze[y][x].x = x;
 				maze[y][x].y = y;
@@ -939,19 +939,19 @@ void Show_labi_hunt_and_kill(HDC hDC)
 
 				int dir = 0;
 				Cell nextStep[5] = { 0 };
-				if ((branchStart.x >= 0) && (branchStart.x < width_work - 1)) {//Вправо
+				if ((branchStart.x >= 0) && (branchStart.x < width_work - 1)) {//Г‚ГЇГ°Г ГўГ®
 					nextStep[dir] = maze[branchStart.y][branchStart.x + 1];
 					dir++;
 				}
-				if ((branchStart.y > 0) && (branchStart.y <= height_work - 1)) {//Вверх
+				if ((branchStart.y > 0) && (branchStart.y <= height_work - 1)) {//Г‚ГўГҐГ°Гµ
 					nextStep[dir] = maze[branchStart.y - 1][branchStart.x];
 					dir++;
 				}
 				if ((branchStart.x > 0) && (branchStart.x <= width_work - 1)) {
-					nextStep[dir] = maze[branchStart.y][branchStart.x - 1];//Влево
+					nextStep[dir] = maze[branchStart.y][branchStart.x - 1];//Г‚Г«ГҐГўГ®
 					dir++;
 				}
-				if ((branchStart.y >= 0) && (branchStart.y < height_work - 1)) {//Вниз
+				if ((branchStart.y >= 0) && (branchStart.y < height_work - 1)) {//Г‚Г­ГЁГ§
 					nextStep[dir] = maze[branchStart.y + 1][branchStart.x];
 					dir++;
 				}
@@ -1009,7 +1009,7 @@ void Show_labi_hunt_and_kill(HDC hDC)
 				switch (maze[branchStart.y][branchStart.x].Visited) {
 				case notVisited:
 					break;
-				case inDonePath: {//Готовый проход
+				case inDonePath: {//ГѓГ®ГІГ®ГўГ»Г© ГЇГ°Г®ГµГ®Г¤
 					Cell nextStepHunt[5] = { 0 };
 					int dir = 0;
 					if (mazePrepare(height_work, width_work, maze) == false) {
@@ -1020,32 +1020,32 @@ void Show_labi_hunt_and_kill(HDC hDC)
 						for (int x = 0; x < width_work; x++) {
 							if (maze[y][x].Visited == false) {
 								if (y < height_work - 1) {
-									if (maze[y + 1][x].Visited == inDonePath) {//Вниз
+									if (maze[y + 1][x].Visited == inDonePath) {//Г‚Г­ГЁГ§
 										nextStepHunt[dir] = maze[y + 1][x];
 										dir++;
 									}
 								}
 								if (y > 0) {
-									if (maze[y - 1][x].Visited == inDonePath) {//Вверх
+									if (maze[y - 1][x].Visited == inDonePath) {//Г‚ГўГҐГ°Гµ
 										nextStepHunt[dir] = (maze[y - 1][x]);
 										dir++;
 									}
 								}
 								if (x < width_work - 1) {
-									if (maze[y][x + 1].Visited == inDonePath) {//Вправо
+									if (maze[y][x + 1].Visited == inDonePath) {//Г‚ГЇГ°Г ГўГ®
 										nextStepHunt[dir] = (maze[y][x + 1]);
 										dir++;
 									}
 								}
 								if (x > 0) {
-									if (maze[y][x - 1].Visited == inDonePath) {//Влево
+									if (maze[y][x - 1].Visited == inDonePath) {//Г‚Г«ГҐГўГ®
 										nextStepHunt[dir] = (maze[y][x - 1]);
 										dir++;
 									}
 								}
 								if (dir > 0) {
 									Cell next = nextStepHunt[rand() % dir];
-									if (maze[y][x].x == next.x) {//горизонтально
+									if (maze[y][x].x == next.x) {//ГЈГ®Г°ГЁГ§Г®Г­ГІГ Г«ГјГ­Г®
 
 										if (next.y > maze[y][x].y) {
 											maze[next.y][next.x].Top = Open;
@@ -1057,11 +1057,11 @@ void Show_labi_hunt_and_kill(HDC hDC)
 										}
 									}
 									else {
-										if (next.x > maze[y][x].x) {//Тут вроде очевидно
+										if (next.x > maze[y][x].x) {//Г’ГіГІ ГўГ°Г®Г¤ГҐ Г®Г·ГҐГўГЁГ¤Г­Г®
 											maze[maze[y][x].y][maze[y][x].x].Right = Open;
 											maze[next.y][next.x].Left = Open;
 										}
-										else {//Тут вроде очевидно
+										else {//Г’ГіГІ ГўГ°Г®Г¤ГҐ Г®Г·ГҐГўГЁГ¤Г­Г®
 											maze[maze[y][x].y][maze[y][x].x].Left = Open;
 											maze[next.y][next.x].Right = Open;
 										}
@@ -1127,7 +1127,7 @@ void Show_labi_binary(HDC hDC)
 	start_time = clock(); 
 	if (!labi_created) {
 		if (maze != NULL) {
-			for (int x = 0; x < width_work; x++) {//Инициализируем матрицу для лабиринта. На клеточку всего 6 аргументов- 4 грани 2-мерной стенки и координаты клетки лабиринта
+			for (int x = 0; x < width_work; x++) {//Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°ГіГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі Г¤Г«Гї Г«Г ГЎГЁГ°ГЁГ­ГІГ . ГЌГ  ГЄГ«ГҐГІГ®Г·ГЄГі ГўГ±ГҐГЈГ® 6 Г Г°ГЈГіГ¬ГҐГ­ГІГ®Гў- 4 ГЈГ°Г Г­ГЁ 2-Г¬ГҐГ°Г­Г®Г© Г±ГІГҐГ­ГЄГЁ ГЁ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ» ГЄГ«ГҐГІГЄГЁ Г«Г ГЎГЁГ°ГЁГ­ГІГ 
 				for (int y = 0; y < height_work; y++) {
 					maze[y][x].x = x;
 					maze[y][x].y = y;
@@ -1148,28 +1148,28 @@ void Show_labi_binary(HDC hDC)
 			struct Stack* path = createStack();
 			push(path, &maze[startY][startX]);
 
-			while (!isEmptyStack(path)) {//Когда закончатся клеточки)
+			while (!isEmptyStack(path)) {//ГЉГ®ГЈГ¤Г  Г§Г ГЄГ®Г­Г·Г ГІГ±Гї ГЄГ«ГҐГІГ®Г·ГЄГЁ)
 
 				char newStringFlag = 0;
 				Cell _cur_cell = *(Cell*)pop(path);
 
 				Vector* nextStep = createVector();
-				if ((_cur_cell.x >= 0) && (_cur_cell.x < width_work - 1)) {//Вправо
+				if ((_cur_cell.x >= 0) && (_cur_cell.x < width_work - 1)) {//Г‚ГЇГ°Г ГўГ®
 					push_back(nextStep, &maze[_cur_cell.y][_cur_cell.x + 1]);
 				}
-				if ((_cur_cell.y > 0) && (_cur_cell.y < height_work)) {//Вверх
+				if ((_cur_cell.y > 0) && (_cur_cell.y < height_work)) {//Г‚ГўГҐГ°Гµ
 					push_back(nextStep, &maze[_cur_cell.y - 1][_cur_cell.x]);
 				}
-				if ((_cur_cell.x == width_work - 1) && _cur_cell.y < height_work - 1) {//Переход на некст строку
+				if ((_cur_cell.x == width_work - 1) && _cur_cell.y < height_work - 1) {//ГЏГҐГ°ГҐГµГ®Г¤ Г­Г  Г­ГҐГЄГ±ГІ Г±ГІГ°Г®ГЄГі
 					newStringFlag = 1;
 				}
 
 
-				if (!isEmptyVector(nextStep) || newStringFlag != 0) {//Пока есть хотя бы одно решение
+				if (!isEmptyVector(nextStep) || newStringFlag != 0) {//ГЏГ®ГЄГ  ГҐГ±ГІГј ГµГ®ГІГї ГЎГ» Г®Г¤Г­Г® Г°ГҐГёГҐГ­ГЁГҐ
 					Cell next_step;
-					if (!newStringFlag) {//Не переход ли на новую строку
+					if (!newStringFlag) {//ГЌГҐ ГЇГҐГ°ГҐГµГ®Г¤ Г«ГЁ Г­Г  Г­Г®ГўГіГѕ Г±ГІГ°Г®ГЄГі
 						next_step = *(Cell*)vGet(nextStep, rand() % vectorSize(nextStep));
-						if (next_step.x != _cur_cell.x) {//Тут вроде очевидно
+						if (next_step.x != _cur_cell.x) {//Г’ГіГІ ГўГ°Г®Г¤ГҐ Г®Г·ГҐГўГЁГ¤Г­Г®
 							maze[_cur_cell.y][_cur_cell.x].Right = Open;
 							maze[next_step.y][next_step.x].Left = Open;
 						}
@@ -1181,7 +1181,7 @@ void Show_labi_binary(HDC hDC)
 						if (_cur_cell.y == height_work - 1 && _cur_cell.x == width_work - 1) {
 							break;
 						}
-						next_step = maze[_cur_cell.y][_cur_cell.x + 1];//Шажочек вправо
+						next_step = maze[_cur_cell.y][_cur_cell.x + 1];//ГГ Г¦Г®Г·ГҐГЄ ГўГЇГ°Г ГўГ®
 
 					}
 					else {
@@ -1192,8 +1192,8 @@ void Show_labi_binary(HDC hDC)
 						next_step = maze[_cur_cell.y + 1][startX];
 						newStringFlag = 0;
 					}
-					pop(path);//Выкидываем отработанную клеточку и решения с ней вместе
-					push(path, &next_step);//Вписываем новую клеточку
+					pop(path);//Г‚Г»ГЄГЁГ¤Г»ГўГ ГҐГ¬ Г®ГІГ°Г ГЎГ®ГІГ Г­Г­ГіГѕ ГЄГ«ГҐГІГ®Г·ГЄГі ГЁ Г°ГҐГёГҐГ­ГЁГї Г± Г­ГҐГ© ГўГ¬ГҐГ±ГІГҐ
+					push(path, &next_step);//Г‚ГЇГЁГ±Г»ГўГ ГҐГ¬ Г­Г®ГўГіГѕ ГЄГ«ГҐГІГ®Г·ГЄГі
 
 
 					glPushMatrix();
@@ -1227,7 +1227,7 @@ void Show_labi_binary(HDC hDC)
 					glTranslatef(-(int)_cur_cell.x, (int)_cur_cell.y, 0);
 				}
 				else {
-					pop(path);//Избавляемся от вариантов без решений
+					pop(path);//Г€Г§ГЎГ ГўГ«ГїГҐГ¬Г±Гї Г®ГІ ГўГ Г°ГЁГ Г­ГІГ®Гў ГЎГҐГ§ Г°ГҐГёГҐГ­ГЁГ©
 				}
 
 			}
@@ -1239,7 +1239,7 @@ void Show_labi_binary(HDC hDC)
 		fclose(time_file);
 		Print_labi_file(maze, height_work, width_work);
 	} 
-	//SwapBuffers(hDC); мудрость для бодрости)))) 
+	//SwapBuffers(hDC); Г¬ГіГ¤Г°Г®Г±ГІГј Г¤Г«Гї ГЎГ®Г¤Г°Г®Г±ГІГЁ)))) 
 	
 	labi_created = 1;
 
@@ -1278,8 +1278,8 @@ void SizeNRate_view(TBoard brd, TBoard brd2)
 	glPushMatrix();
 	glLoadIdentity();
 	glOrtho(0, width, height, 0, -1, 1);
-	glTranslatef(brd.vert[0], brd.vert[1], 0); // передвигаем буквы к доске
-	glScalef(3, 3, 3); // увеличиваем текст
+	glTranslatef(brd.vert[0], brd.vert[1], 0); // ГЇГҐГ°ГҐГ¤ГўГЁГЈГ ГҐГ¬ ГЎГіГЄГўГ» ГЄ Г¤Г®Г±ГЄГҐ
+	glScalef(3, 3, 3); // ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ ГІГҐГЄГ±ГІ
 	glBegin(GL_TRIANGLE_STRIP);
 	glColor3f(0, 0, 0); glVertex2f(0, 15);
 	glColor3f(0, 0, 0); glVertex2f(20, 15); glVertex2f(0, 0);
@@ -1297,8 +1297,8 @@ void SizeNRate_view(TBoard brd, TBoard brd2)
 		glPushMatrix();
 		glLoadIdentity();
 		glOrtho(0, width, height, 0, -1, 1);
-		glTranslatef(brd2.vert[0], brd2.vert[1], 0); // передвигаем буквы к доске
-		glScalef(3, 3, 3); // увеличиваем текст
+		glTranslatef(brd2.vert[0], brd2.vert[1], 0); // ГЇГҐГ°ГҐГ¤ГўГЁГЈГ ГҐГ¬ ГЎГіГЄГўГ» ГЄ Г¤Г®Г±ГЄГҐ
+		glScalef(3, 3, 3); // ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ ГІГҐГЄГ±ГІ
 		glBegin(GL_TRIANGLE_STRIP);
 		glColor3f(0, 0, 0); glVertex2f(0, 15);
 		glColor3f(0, 0, 0); glVertex2f(20, 15); glVertex2f(0, 0);
@@ -1329,8 +1329,8 @@ void Name_view(TBoard brd)
 	glPushMatrix();
 	glLoadIdentity();
 	glOrtho(0, width, height, 0, -1, 1);
-	glTranslatef(brd.vert[0], brd.vert[1], 0); // передвигаем буквы к доске
-	glScalef(3, 3, 3); // увеличиваем текст
+	glTranslatef(brd.vert[0], brd.vert[1], 0); // ГЇГҐГ°ГҐГ¤ГўГЁГЈГ ГҐГ¬ ГЎГіГЄГўГ» ГЄ Г¤Г®Г±ГЄГҐ
+	glScalef(3, 3, 3); // ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ ГІГҐГЄГ±ГІ
 	glBegin(GL_TRIANGLE_STRIP);
 	glColor3f(0, 0, 0); glVertex2f(0, 15);
 	glColor3f(0, 0, 0); glVertex2f(20, 15); glVertex2f(0, 0);
@@ -1349,8 +1349,8 @@ void Saved_view(TBoard brd)
 	glPushMatrix();
 	glLoadIdentity();
 	glOrtho(0, width, height, 0, -1, 1);
-	glTranslatef(brd.vert[0], brd.vert[1], 0); // передвигаем буквы к доске
-	glScalef(3, 3, 3); // увеличиваем текст
+	glTranslatef(brd.vert[0], brd.vert[1], 0); // ГЇГҐГ°ГҐГ¤ГўГЁГЈГ ГҐГ¬ ГЎГіГЄГўГ» ГЄ Г¤Г®Г±ГЄГҐ
+	glScalef(3, 3, 3); // ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ ГІГҐГЄГ±ГІ
 	glBegin(GL_TRIANGLE_STRIP);
 	glColor3f(0, 0, 0); glVertex2f(0, 15);
 	glColor3f(0, 0, 0); glVertex2f(20, 15); glVertex2f(0, 0);
@@ -1491,7 +1491,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	RECT rct;
 	GetClientRect(hwnd, &rct);
-	glOrtho(0, rct.right, rct.bottom, 0, 1, -1); // поворот матрицы для букв
+	glOrtho(0, rct.right, rct.bottom, 0, 1, -1); // ГЇГ®ГўГ®Г°Г®ГІ Г¬Г ГІГ°ГЁГ¶Г» Г¤Г«Гї ГЎГіГЄГў
 
 	/* program main loop */
 	while (!bQuit)
@@ -1584,23 +1584,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			}
 
 				
-				glPushMatrix();
-				glScalef(10, 10, 10);
-				glRotatef(theta, 0.0f, 0.0f, 1.0f);
-
-				/*glBegin(GL_TRIANGLES);
-
-				glColor3f(1.0f, 0.0f, 0.0f);   glVertex2f(0.0f, 1.0f);
-				glColor3f(0.0f, 1.0f, 0.0f);   glVertex2f(0.87f, -0.5f);
-				glColor3f(0.0f, 0.0f, 1.0f);   glVertex2f(-0.87f, -0.5f);
-
-				glEnd();*/
-				glScalef(0.014, 0.014, 0.014);
-				print_string(0, 0, "8========D ? :", sin(theta*10), 0.5, cos(theta * 100));
-				print_string(-10, -10, "NIGGERS", sin(theta * 10), cos(theta * 10), 0.9);
-				print_string(200, 2000, "", 0, 1, 0);
-				glPopMatrix();
-				theta += 0.5f;
+				
 			}
 			SwapBuffers(hDC);
 
@@ -1640,9 +1624,9 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			file_name_counter = 0;
 			labi_force_reload = 0;
 			for (int i = 0; i < btnCnt; i++) {
-				if (PointInButton(LOWORD(lParam), HIWORD(lParam), btn[i])) // проверка на попадание в кнопку
+				if (PointInButton(LOWORD(lParam), HIWORD(lParam), btn[i])) // ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГ®ГЇГ Г¤Г Г­ГЁГҐ Гў ГЄГ­Г®ГЇГЄГі
 				{
-					if (strcmp(btn[i].name, "quit") == 0) PostQuitMessage(0); // попадание на кнопку qиiт
+					if (strcmp(btn[i].name, "quit") == 0) PostQuitMessage(0); // ГЇГ®ГЇГ Г¤Г Г­ГЁГҐ Г­Г  ГЄГ­Г®ГЇГЄГі qГЁiГІ
 					if (strcmp(btn[i].name, "about") == 0) location = ABOUT;
 					if (strcmp(btn[i].name, "usage") == 0) location = USAGE;
 					if (strcmp(btn[i].name, "start") == 0) {
@@ -1655,7 +1639,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 		if (location == START && !click_delay) {
 			for (int i = 0; i < start_btnCnt; i++) {
-				if (PointInButton(LOWORD(lParam), HIWORD(lParam), start_btn[i])) // проверка на попадание в кнопку
+				if (PointInButton(LOWORD(lParam), HIWORD(lParam), start_btn[i])) // ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГ®ГЇГ Г¤Г Г­ГЁГҐ Гў ГЄГ­Г®ГЇГЄГі
 				{
 					if (strcmp(start_btn[i].name, "back") == 0) location = MAIN_MENU;
 					
@@ -1689,7 +1673,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 		if (location == ABOUT) {
 			for (int i = 0; i < about_btnCnt; i++) {
-				if (PointInButton(LOWORD(lParam), HIWORD(lParam), about_btn[i])) // проверка на попадание в кнопку
+				if (PointInButton(LOWORD(lParam), HIWORD(lParam), about_btn[i])) // ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГ®ГЇГ Г¤Г Г­ГЁГҐ Гў ГЄГ­Г®ГЇГЄГі
 				{
 					if (strcmp(about_btn[i].name, "back") == 0) location = MAIN_MENU;
 				}
@@ -1697,7 +1681,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 		if (location == USAGE) {
 			for (int i = 0; i < usage_btnCnt; i++) {
-				if (PointInButton(LOWORD(lParam), HIWORD(lParam), usage_btn[i])) // проверка на попадание в кнопку
+				if (PointInButton(LOWORD(lParam), HIWORD(lParam), usage_btn[i])) // ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГ®ГЇГ Г¤Г Г­ГЁГҐ Гў ГЄГ­Г®ГЇГЄГі
 				{
 					if (strcmp(usage_btn[i].name, "back") == 0) location = MAIN_MENU;
 				}
@@ -1841,7 +1825,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_MOUSEMOVE: 
-		if (location == MAIN_MENU) for (int i = 0; i < btnCnt; i++) btn[i].hover = PointInButton(LOWORD(lParam), HIWORD(lParam), btn[i]); // подсветка кнопок
+		if (location == MAIN_MENU) for (int i = 0; i < btnCnt; i++) btn[i].hover = PointInButton(LOWORD(lParam), HIWORD(lParam), btn[i]); // ГЇГ®Г¤Г±ГўГҐГІГЄГ  ГЄГ­Г®ГЇГ®ГЄ
 		if (location == ABOUT) for (int i = 0; i < about_btnCnt; i++) about_btn[i].hover = PointInButton(LOWORD(lParam), HIWORD(lParam), about_btn[i]);
 		if (location == USAGE) for (int i = 0; i < usage_btnCnt; i++) usage_btn[i].hover = PointInButton(LOWORD(lParam), HIWORD(lParam), usage_btn[i]);
 		if (location == START) for (int i = 0; i < start_btnCnt; i++) start_btn[i].hover = PointInButton(LOWORD(lParam), HIWORD(lParam), start_btn[i]);
